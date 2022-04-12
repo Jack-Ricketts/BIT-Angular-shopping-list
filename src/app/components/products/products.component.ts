@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/ProductModel';
 import { ProductService } from 'src/app/services/product.service';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -16,15 +17,8 @@ export class ProductsComponent implements OnInit {
     this.products=productService.products;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
-  public addNewProduct(name:HTMLInputElement, count:HTMLInputElement){
-    if (name.value!=''){
-      this.productService.add(name.value,count.valueAsNumber);
-      name.value='';
-      count.value='';
+  
 
-    }
-  }
 }
