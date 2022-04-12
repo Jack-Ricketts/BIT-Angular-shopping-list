@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { ProductItemComponent } from './components/products/product-item/product-item.component';
 import { ProductsComponent } from './components/products/products.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,
