@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Product } from '../models/ProductModel';
-
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class ProductService {
+
   public products:Product[]=[];
+  public onProductsChange=new EventEmitter();
+
   constructor() { }
 
   public load(){
-    let data=localStorage.getItem('products');
+    let data=localStorage.getItem("products");
     if (data!=null){
       this.products=JSON.parse(data);
     }
@@ -27,11 +28,26 @@ export class ProductService {
       count : count
     });
     this.save();
+    this.onProductsChange.emit();
   }
 
   public delete(index:number){
     this.products.splice(index,1);
     this.save();
+    this.onProductsChange.emit();
+  }
+
+  public get(index:number){
+    return this.products[index];
+  }
+
+  public update(index:number, name:String,count:number){
+    this.products[index].name=name;
+    this.products[index].count=count;
+    this.save();
   }
   
+  public getProductCount(){
+    return this.products.length;
+  }
 }
